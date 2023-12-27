@@ -1,5 +1,5 @@
 package mingati.luis.creditapp.enumerators
 
 enum class Status {
-    IN_PROGRESS, APPROVED, REJECT
+  IN_PROGRESS, APPROVED, REJECT
 }
