@@ -1,6 +1,7 @@
 package mingati.luis.creditapp.service.impl
 
 import mingati.luis.creditapp.entity.Credit
+import mingati.luis.creditapp.exception.BusinessException
 import mingati.luis.creditapp.repository.CreditRepository
 import mingati.luis.creditapp.service.ICreditService
 import org.springframework.stereotype.Service
@@ -24,8 +25,8 @@ class CreditService(
 
   override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
     val credit =
-      this.creditRepository.findByCreditCode(creditCode) ?: throw RuntimeException("Credit code $creditCode not found")
+      this.creditRepository.findByCreditCode(creditCode) ?: throw BusinessException("Credit code $creditCode not found")
 
-    return if (credit.customer?.id == customerId) credit else throw RuntimeException("Account not found")
+    return if (credit.customer?.id == customerId) credit else throw IllegalArgumentException("Account not found")
   }
 }

@@ -1,5 +1,6 @@
 package mingati.luis.creditapp.controller
 
+import jakarta.validation.Valid
 import mingati.luis.creditapp.dto.CreditDto
 import mingati.luis.creditapp.dto.CreditView
 import mingati.luis.creditapp.dto.CreditViewList
@@ -24,7 +25,7 @@ class CreditController(
   private val creditService: CreditService
 ) {
   @PostMapping
-  fun saveCredit(@RequestBody creditDto: CreditDto): ResponseEntity<String> {
+  fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<String> {
     val credit = this.creditService.save(creditDto.toEntity())
     return ResponseEntity.status(HttpStatus.CREATED)
       .body("Credit ${credit.creditCode} created!!")
